@@ -377,7 +377,7 @@ class ShortLinkController extends Controller
 	public function process($hash)
     {
         try {
-            $link = UrlShortcode::where('hash', $hash)->first();
+            $link = UrlShortcode::where('hash', $hash)->where('is_used',0)->first();
 
             if (empty($link)) {
                 return $this->sendError('Url not found!', ["general" => 'Url not found!'], 404, false);
